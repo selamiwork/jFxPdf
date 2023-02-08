@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.est.app.fxml.MainController">
+   <center>
+      <StackPane fx:id="stackPane">
+         <children>
+            <Pane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0">
+               <children>
+                  <ImageView fx:id="imageviewBackground" disable="true" fitHeight="768.0" fitWidth="1024.0" opacity="0.3" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/image_background_1.png" />
+                     </image>
+                     <viewport>
+                        <Rectangle2D />
+                     </viewport>
+                  </ImageView>
+                  <BorderPane prefHeight="768.0" prefWidth="1024.0">
+                     <center>
+                        <StackPane BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>
