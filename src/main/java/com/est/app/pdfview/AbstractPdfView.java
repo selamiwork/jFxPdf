@@ -61,10 +61,18 @@ public abstract class AbstractPdfView {
         return toImage(index, scale);
     }
 
+    public Image toImageFit(double width, double height) {
+        return toImageFit(index, width, height);
+    }
+
+    public Image toImageFit(int page, double width, double height) {
+        Image image = toImage(page, 1.0f);
+        float scale = image.getHeight() > image.getWidth() ? (float) ((height) / image.getHeight()) : (float) ((width) / image.getWidth());
+        return toImage(page, scale == 0 ? 1.0f : scale);
+    }
+
     public Image toImageFitHeight(double height) {
-        Image image = toImage(index, 1.0f);
-        float scale = (float) ((height) / image.getHeight());
-        return toImage(index, scale == 0 ? 1.0f : scale);
+        return toImageFitHeight(index, height);
     }
 
     public Image toImageFitHeight(int page, double height) {
@@ -79,6 +87,14 @@ public abstract class AbstractPdfView {
 
     public ImageView toImageViewFitHeight(int page, double height) {
         return new ImageView(toImageFitHeight(page, height));
+    }
+
+    public ImageView toImageViewFit(double width, double height) {
+        return new ImageView(toImageFit(width, height));
+    }
+
+    public ImageView toImageViewFit(int page, double width, double height) {
+        return new ImageView(toImageFit(page, width, height));
     }
 
     public ImageView toImageView(int page) {

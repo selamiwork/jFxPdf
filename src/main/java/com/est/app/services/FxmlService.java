@@ -472,7 +472,7 @@ public class FxmlService {
     }
 
     public static File selectPdfFile(String defaultFile, Window owner){
-        return selectFile(defaultFile, owner, "Image File", "PDF files (*.pdf)", "*.pdf");
+        return selectFile(defaultFile, owner, "PDF File", "PDF files (*.pdf)", "*.pdf");
     }
 
     public static File selectFile(String defaultFile, Window owner, final String title, final String description, final String... extensions){

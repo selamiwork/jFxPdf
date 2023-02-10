@@ -91,7 +91,7 @@ public class PdfViewController implements Initializable {
         scrollPane.heightProperty().addListener((observable, oldValue, newValue) -> {
             if(imageView != null){
                 if(newValue.doubleValue() > imageView.getImage().getHeight()){
-                    imageView.setImage(pdfView.toImageFitHeight(newValue.doubleValue() - 10));
+                    imageView.setImage(pdfView.toImageFitHeight(newValue.doubleValue() - 20));
                 }
             }
         });
@@ -123,7 +123,7 @@ public class PdfViewController implements Initializable {
         imageviewRotate.setOnMouseClicked(event -> EffectUtils.setToAngel(imageView, 500, angle += 90));
         imageviewZoomOut.setOnMouseClicked(event -> imageView.setImage(pdfView.toImage(pdfView.getScale() * 0.9f)));
         imageviewZoomIn.setOnMouseClicked(event -> imageView.setImage(pdfView.toImage(pdfView.getScale() * 1.1f)));
-        imageviewFit.setOnMouseClicked(event -> imageView.setImage(pdfView.toImageFitHeight(scrollPane.getHeight() - 10)));
+        imageviewFit.setOnMouseClicked(event -> imageView.setImage(pdfView.toImageFit(scrollPane.getWidth() - 20, scrollPane.getHeight() - 20)));
         textfieldPageNo.setOnAction(event -> { try { imageView.setImage(pdfView.toImage(Math.max(0, Integer.parseInt(textfieldPageNo.getText()) - 1))); } catch (NumberFormatException e) { } update(); });
 
         new Thread(() -> load()).start();
@@ -131,7 +131,7 @@ public class PdfViewController implements Initializable {
 
     private void load(){
         pdfView.load();
-        imageView = pdfView.toImageViewFitHeight(0, scrollPane.getHeight());
+        imageView = pdfView.toImageViewFit(0, scrollPane.getWidth() - 20, scrollPane.getHeight() - 20);
         imageView.setOnScroll(event -> {
             if(event.isControlDown()){
                 imageView.setImage(pdfView.toImage(pdfView.getScale() * (event.getDeltaY() > 0 ? 1.05f : 0.95f)));
